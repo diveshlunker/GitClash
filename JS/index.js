@@ -70,10 +70,10 @@ function blog(user1,user2,c1,c2){
         
         var stars1 = stargazzers(data);
 //        var watches1 = watches(data);
-//        var forks1 = forks(data);
-//        var repoforks1 = repoWithoutForks(data);
+        var forks1 = forks(data);
+        var repoforks1 = repoWithoutForks(data);
         var languages1 = languages(data);
-//        var license1 = licence(data);
+        var license1 = licence(data);
     });
     $.getJSON("https://api.github.com/users/"+user2+"/repos")
     .done(function(data){
@@ -81,10 +81,10 @@ function blog(user1,user2,c1,c2){
         console.log(data);
         var stars2 = stargazzers(data);
 //        var watches2 = watches(data);
-//        var forks2 = forks(data);
-//        var repoforks2 = repoWithoutForks(data);
+        var forks2 = forks(data);
+        var repoforks2 = repoWithoutForks(data);
         var languages2 = languages(data);
-//        var license2 = licence(data);
+        var license2 = licence(data);
         
     });
     
@@ -130,13 +130,48 @@ function languages(data){
     return languages
     
 }
-function forks(){
+function forks(data){
+    var i;
+    var fork = 0;
+    datastream = Object(data);
+    for(i=0;i<datastream.length;i++){
+        if(!datastream[i].fork){
+            fork+=(datastream[i].forks_count)
+        }
+        
+    }
+    return fork
     
 }
-function repoWithoutForks(){
+function repoWithoutForks(data){
+    var i;
+    var count = 0;
+    datastream = Object(data);
+    for(i=0;i<datastream.length;i++){
+        if(!datastream[i].fork){
+            count+=1
+        }
+        
+    }
+//    console.log(count);
+    return count
     
 }
-function licence(){
+function licence(data){
+    var i;
+    var license = 0;
+    datastream = Object(data);
+    for(i=0;i<datastream.length;i++){
+        if(!datastream[i].fork){
+            if(datastream[i].license!=null){
+                license+=1
+            }
+            
+        }
+        
+    }
+    console.log(license);
+    return license
     
 }
 function main(user1,user2){
