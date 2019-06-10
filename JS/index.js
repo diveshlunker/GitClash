@@ -54,62 +54,86 @@ function ScoreCalc(user1, user2){
         }
 
 
-        console.log(c2)
+//        console.log(c2)
         
         
     });
-    
-    
-    
-//    console.log(norepou1);
-    
-//    blog(user1,user2,c1,c2);
-//    if(c1>c2){
-//        var data = user1 + "Won by" + c1-c2 + "Points";
-//        return data
-//    }
-//    if(c1>c2){
-//        var data = user1 + "Won by" + c1-c2 + "Points";
-//        return data
-//    }
-//    if(c1>c2){
-//        var data = user1 + "Won by" + c1-c2 + "Points";
-//        return data
-//    }
+    blog(user1,user2,c1,c2);
     
     
     
 }
 function blog(user1,user2,c1,c2){
     
-    $.getJSON("https://api.github.com/users/"+user1)
+    $.getJSON("https://api.github.com/users/"+user1+"/repos")
     .done(function(data){
         
-        console.log(blog1);
+        var stars1 = stargazzers(data);
+//        var watches1 = watches(data);
+//        var forks1 = forks(data);
+//        var repoforks1 = repoWithoutForks(data);
+        var languages1 = languages(data);
+//        var license1 = licence(data);
     });
-    $.getJSON("https://api.github.com/users/"+user2)
+    $.getJSON("https://api.github.com/users/"+user2+"/repos")
     .done(function(data){
         
-        console.log(blog2);
+        console.log(data);
+        var stars2 = stargazzers(data);
+//        var watches2 = watches(data);
+//        var forks2 = forks(data);
+//        var repoforks2 = repoWithoutForks(data);
+        var languages2 = languages(data);
+//        var license2 = licence(data);
+        
     });
     
 }
-function followers(){
-    
+
+function stargazzers(data){
+    var i;
+    var stars = 0;
+    datastream = Object(data);
+    for(i=0;i<datastream.length;i++){
+        if(!datastream[i].fork){
+            stars+=(datastream[i].stargazers_count)
+        }
+        
+    }
+    return stars
 }
-function stargazzers(){
-    
-}
-function languages(){
+function languages(data){
+    var i;
+    var languages = 0;
+    var l = ["languages"];
+    datastream = Object(data);
+    for(i=0;i<datastream.length;i++){
+        var c=1
+        var j;
+        if(!datastream[i].fork){
+            language = datastream[i].language;
+            for(j=0;j<l.length;j++){
+                if(l[j]==language || language==null){
+                    c=0
+                    break
+                }
+            }
+            if(c==1){
+                
+                languages+=1;
+                l.push(language)
+            }
+            
+        }
+        
+    }
+    return languages
     
 }
 function forks(){
     
 }
 function repoWithoutForks(){
-    
-}
-function company(){
     
 }
 function licence(){
