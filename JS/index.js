@@ -7,11 +7,11 @@ function scoreUnScratched(norepou1,norepou2,blog1,blog2,difffof1,difffof2,compan
     if(norepou1==norepou2){
             c1+=0.5;
             c2+=0.5;
-        console.log(c1);
+//        console.log(c1);
     }
     else if(norepou1>norepou2){
             c1+=1;
-        console.log(c1);
+//        console.log(c1);
     }
     else if(norepou2>norepou1){
             c2+=1;
@@ -19,14 +19,14 @@ function scoreUnScratched(norepou1,norepou2,blog1,blog2,difffof1,difffof2,compan
 //    console.log(blog1);
     if(blog1!=""){
         c1+=1;
-        console.log(c1);
+//        console.log(c1);
     }
     if(blog2!=""){
         c2+=1;
     }
     if(difffof1>difffof2){
         c1+=1;
-        console.log(c1);
+//        console.log(c1);
     }
     else if(difffof1<difffof2){
         c2+=1;
@@ -34,11 +34,11 @@ function scoreUnScratched(norepou1,norepou2,blog1,blog2,difffof1,difffof2,compan
     else if(difffof1==difffof2){
         c1+=0.5;
         c2+=0.5;
-        console.log(c1);
+//        console.log(c1);
     }
     if(company1.length>2){
         c1+=1;
-        console.log(company2);
+//        console.log(company2);
     }
     if(company2.length>2){
         c2+=1;
@@ -123,75 +123,11 @@ function repoScratchScoreCalc(stars1,stars2,watches1,watches2,forks1,forks2,repo
     l.push(c1);
     l.push(c2);
     
-    console.log(l);
+//    console.log(l);
     return l;
     
 }
 
-
-function ScoreCalc(user1, user2){
-    var c1=0;
-    var c2=0;
-    var x="https://api.github.com/users/"+user1;
-    var y="https://api.github.com/users/"+user2;
-    var names = document.getElementById("names");
-    var norepou2;
-    var norepou1;
-    var blog1;
-    var blog2;
-    var followers1;
-    var followers2;
-    var following1;
-    var following2;
-    var company1;
-    var company2;
-    var difffof1;
-    var difffof2;
-    var scoreun;
-    
-    $.getJSON("https://api.github.com/users/"+user1)
-    .done(function(data){
-        norepou1 = Object(data.public_repos);
-        blog1 = Object(data.blog);
-        followers1 = Object(data.followers);
-        following1 = Object(data.following);
-        difffof1 = followers1-following1;
-        company1 = Object(data.company);
-        console.log(company1);
-        
-//        console.log(norepou1);
-        
-    });
-    $.getJSON("https://api.github.com/users/"+user2)
-    .done(function(data){
-        norepou2 = Object(data.public_repos);
-        blog2 = Object(data.blog);
-        followers2 = Object(data.followers);
-        following2 = Object(data.following);
-        difffof2 = followers2-following2;
-        company2 = Object(data.company);
-        
-        
-        
-        scoreun = scoreUnScratched(norepou1,norepou2,blog1,blog2,difffof1,difffof2,company1,company2);
-//        console.log(norepou2);
-        console.log(scoreun);
-        
-        
-        
-        
-        
-    });
-    var scoreScratched = repoScratch(user1,user2,c1,c2);
-    
-//    c1 = scoreScratched[0]+scoreUnScratched[0];
-//    c2 = scoreScratched[1]+scoreUnScratched[1];
-    
-    
-    
-    
-    
-}
 function repoScratch(user1,user2,c1,c2){
     var stars1;
     var stars2;
@@ -205,6 +141,8 @@ function repoScratch(user1,user2,c1,c2){
     var license2;
     var languages1;
     var languages2;
+    var score;
+    
     
     $.getJSON("https://api.github.com/users/"+user1+"/repos")
     .done(function(data){
@@ -228,13 +166,100 @@ function repoScratch(user1,user2,c1,c2){
         languages2 = languages(data);
         license2 = licence(data);
 //        console.log(watches1);
-        var score = repoScratchScoreCalc(stars1,stars2,watches1,watches2,forks1,forks2,repoforks1,repoforks2,languages1,languages2,license1,license2);
+        
+        
+        
+//        console.log(l);
+        
+        
+        
     });
+    score = repoScratchScoreCalc(stars1,stars2,watches1,watches2,forks1,forks2,repoforks1,repoforks2,languages1,languages2,license1,license2);
+//        console.log(score);
+    return score;   
     
+//    return l;
+    
+//    console.log(score);
 //    return score;
     
     
 }
+
+
+function ScoreCalc(user1, user2){
+    var c1=0;
+    var c2=0;
+    var x="https://api.github.com/users/"+user1;
+    var y="https://api.github.com/users/"+user2;
+    var names = document.getElementById("names");
+    var norepou2;
+    var norepou1;
+    var blog1;
+    var blog2;
+    var followers1;
+    var followers2;
+    var following1;
+    var following2;
+    var company1;
+    var company2;
+    var difffof1;
+    var difffof2;
+    var scoreun;
+//    var scoreScratched = Array[100];
+    
+    
+    
+    $.getJSON("https://api.github.com/users/"+user1)
+    .done(function(data){
+        norepou1 = Object(data.public_repos);
+        blog1 = Object(data.blog);
+        followers1 = Object(data.followers);
+        following1 = Object(data.following);
+        difffof1 = followers1-following1;
+        company1 = Object(data.company);
+//        console.log(company1);
+        
+//        console.log(norepou1);
+        
+    });
+    $.getJSON("https://api.github.com/users/"+user2)
+    .done(function(data){
+        norepou2 = Object(data.public_repos);
+        blog2 = Object(data.blog);
+        followers2 = Object(data.followers);
+        following2 = Object(data.following);
+        difffof2 = followers2-following2;
+        company2 = Object(data.company);
+        
+        
+        
+        scoreun = scoreUnScratched(norepou1,norepou2,blog1,blog2,difffof1,difffof2,company1,company2);
+//        console.log(norepou2);
+//        console.log(scoreun);
+        scoreScratched = repoScratch(user1,user2,c1,c2);
+    console.log(scoreScratched);
+    
+    
+    c1 = scoreScratched[1]+scoreun[1];
+    c2 = scoreScratched[2]+scoreun[2];
+    console.log(c1+c2);
+    console.log(scoreScratched);
+        
+        
+        
+        
+        
+        
+    });
+    
+    
+    
+    
+    
+    
+}
+
 
 function stargazzers(data){
     var i;
