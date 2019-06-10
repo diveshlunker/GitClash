@@ -1,3 +1,133 @@
+function scoreUnScratched(norepou1,norepou2,blog1,blog2,difffof1,difffof2,company1,company2)
+{
+    var c1=0;
+    var c2=0;
+    var l=["values"] ;
+    
+    if(norepou1==norepou2){
+            c1+=0.5;
+            c2+=0.5;
+        console.log(c1);
+    }
+    else if(norepou1>norepou2){
+            c1+=1;
+        console.log(c1);
+    }
+    else if(norepou2>norepou1){
+            c2+=1;
+    }
+//    console.log(blog1);
+    if(blog1!=""){
+        c1+=1;
+        console.log(c1);
+    }
+    if(blog2!=""){
+        c2+=1;
+    }
+    if(difffof1>difffof2){
+        c1+=1;
+        console.log(c1);
+    }
+    else if(difffof1<difffof2){
+        c2+=1;
+    }
+    else if(difffof1==difffof2){
+        c1+=0.5;
+        c2+=0.5;
+        console.log(c1);
+    }
+    if(company1.length>2){
+        c1+=1;
+        console.log(company2);
+    }
+    if(company2.length>2){
+        c2+=1;
+    }
+    l.push(c1);
+    l.push(c2);
+    
+    return l;
+}
+
+function repoScratchScoreCalc(stars1,stars2,watches1,watches2,forks1,forks2,repoforks1,repoforks2,languages1,languages2,license1,license2)
+{
+    
+    var l = ["valuesss"];
+    var c1=0;
+    var c2=0;
+    if(stars1>stars2){
+        c1+=1;
+    }
+    else if(stars1<stars2){
+        c2+=1;
+    }
+    else if(stars1==stars2){
+        c1+=0.5;
+        c2+=0.5;
+    }
+    
+    if(watches1>watches2){
+        c1+=1;
+    }
+    else if(watches1<watches2){
+        c2+=1;
+    }
+    else if(watches1==watches2){
+        c1+=0.5;
+        c2+=0.5;
+    }
+    
+    if(forks1>forks2){
+        c1+=1;
+    }
+    else if(forks1<forks2){
+        c2+=1;
+    }
+    else if(forks1==forks2){
+        c1+=0.5;
+        c2+=0.5;
+    }
+    
+    if(repoforks1>repoforks2){
+        c1+=1;
+    }
+    else if(repoforks1<repoforks2){
+        c2+=1;
+    }
+    else if(repoforks1==repoforks2){
+        c1+=0.5;
+        c2+=0.5;
+    }
+    
+    if(languages1>languages2){
+        c1+=1;
+    }
+    else if(languages1<languages2){
+        c2+=1;
+    }
+    else if(languages1==languages2){
+        c1+=0.5;
+        c2+=0.5;
+    }
+    
+    if(license1>license2){
+        c1+=1;
+    }
+    else if(license1<license2){
+        c2+=1;
+    }
+    else if(license1==license2){
+        c1+=0.5;
+        c2+=0.5;
+    }
+    l.push(c1);
+    l.push(c2);
+    
+    console.log(l);
+    return l;
+    
+}
+
 
 function ScoreCalc(user1, user2){
     var c1=0;
@@ -17,7 +147,7 @@ function ScoreCalc(user1, user2){
     var company2;
     var difffof1;
     var difffof2;
-    var scoreUnScratched
+    var scoreun;
     
     $.getJSON("https://api.github.com/users/"+user1)
     .done(function(data){
@@ -26,7 +156,8 @@ function ScoreCalc(user1, user2){
         followers1 = Object(data.followers);
         following1 = Object(data.following);
         difffof1 = followers1-following1;
-        company1 = Object(data.company)
+        company1 = Object(data.company);
+        console.log(company1);
         
 //        console.log(norepou1);
         
@@ -38,37 +169,23 @@ function ScoreCalc(user1, user2){
         followers2 = Object(data.followers);
         following2 = Object(data.following);
         difffof2 = followers2-following2;
-        company2 = Object(data.company)
+        company2 = Object(data.company);
         
         
         
-        scoreUnScratched = scoreUnScratched(norepou1,norepou2,blog1,blog2,difffof1,difffof2,company1,company2);
+        scoreun = scoreUnScratched(norepou1,norepou2,blog1,blog2,difffof1,difffof2,company1,company2);
 //        console.log(norepou2);
+        console.log(scoreun);
         
         
-        if(norepou1==norepou2){
-            c1+=1
-            c2+=1
-//            console.log("diveshhh");
-        }
-        else if(norepou1>norepou2){
-            c1+=1
-//            console.log("divesh");
-        }
-        else if(norepou2>norepou1){
-            c2+=1
-//            console.log("diveshh");
-        }
-
-
-//        console.log(c2)
+        
         
         
     });
     var scoreScratched = repoScratch(user1,user2,c1,c2);
     
-    c1 = scoreScratched[0]+scoreUnScratched[0];
-    c2 = scoreScratched[1]+scoreUnScratched[1];
+//    c1 = scoreScratched[0]+scoreUnScratched[0];
+//    c2 = scoreScratched[1]+scoreUnScratched[1];
     
     
     
@@ -114,7 +231,7 @@ function repoScratch(user1,user2,c1,c2){
         var score = repoScratchScoreCalc(stars1,stars2,watches1,watches2,forks1,forks2,repoforks1,repoforks2,languages1,languages2,license1,license2);
     });
     
-    return score;
+//    return score;
     
     
 }
