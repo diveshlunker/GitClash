@@ -36,11 +36,11 @@ function scoreUnScratched(norepou1,norepou2,blog1,blog2,difffof1,difffof2,compan
         c2+=0.5;
 //        console.log(c1);
     }
-    if(company1.length>2){
+    if(company1.length>0){
         c1+=1;
 //        console.log(company2);
     }
-    if(company2.length>2){
+    if(company2.length>0){
         c2+=1;
     }
     l.push(c1);
@@ -192,7 +192,7 @@ function ScoreCalc(user1, user2){
     var c2=0;
     var x="https://api.github.com/users/"+user1;
     var y="https://api.github.com/users/"+user2;
-    var names = document.getElementById("names");
+    
     var norepou2;
     var norepou1;
     var blog1;
@@ -206,6 +206,7 @@ function ScoreCalc(user1, user2){
     var difffof1;
     var difffof2;
     var scoreun;
+    var diff1;
 //    var scoreScratched = Array[100];
     
     
@@ -225,6 +226,11 @@ function ScoreCalc(user1, user2){
     });
     $.getJSON("https://api.github.com/users/"+user2)
     .done(function(data){
+        
+        var names = document.getElementById("names");
+        var winners = document.getElementById("winner");
+        
+        
         norepou2 = Object(data.public_repos);
         blog2 = Object(data.blog);
         followers2 = Object(data.followers);
@@ -244,7 +250,24 @@ function ScoreCalc(user1, user2){
     c1 = scoreScratched[1]+scoreun[1];
     c2 = scoreScratched[2]+scoreun[2];
     console.log(c1+c2);
-    console.log(scoreScratched);
+    console.log(scoreun);
+    
+        names.innerHTML = user1+" scores "+c1+" points"+ " while "+user2+" scores "+c2+" points";
+        
+        
+        if(c1>c2){
+            diff1 = c1-c2;
+            winners.innerHTML = user1+" wins against "+user2+" by "+diff1+" points.";
+        }
+        
+        else if(c2>c1){
+            diff1=c2-c1;
+            winners.innerHTML = user2+" wins against "+user1+" by "+diff1+" points.";
+        }
+        
+        else if(c2==c1){
+            winners.innerHTML = user1+" equals "+user2;
+        }
         
         
         
@@ -252,6 +275,7 @@ function ScoreCalc(user1, user2){
         
         
     });
+//    names.innerHTML=c1;
     
     
     
