@@ -41,6 +41,11 @@ function scoreUnScratched(norepou1,norepou2,blog1,blog2,difffof1,difffof2,compan
     if(company2.length>1){
         c2+=1
     }
+    if(company1.length>1 && company2.length>1){
+        c1-=0.5;
+        c2-=0.5
+    }
+    
     
     
     l.push(c1);
@@ -170,8 +175,16 @@ function ScoreCalc(user1, user2){
     $.getJSON("https://api.github.com/users/"+user1)
     .done(function(data){
         
+        document.getElementById("card1").style.display = "grid";
+        
         var names = document.getElementById("names");
         var winners = document.getElementById("winner");
+        var name1 = document.getElementById("name1");
+        var score1 = document.getElementById("score1");
+        var img1 = document.getElementById("user1image");
+        var git1 = document.getElementById("git1");
+        var git2 = document.getElementById("git2");
+        img1.src = Object(data.avatar_url);
         
         norepou1 = Object(data.public_repos);
         blog1 = Object(data.blog);
@@ -182,6 +195,15 @@ function ScoreCalc(user1, user2){
         
         $.getJSON("https://api.github.com/users/"+user2)
         .done(function(data){
+            
+            var name2 = document.getElementById("name2");
+            var score2 = document.getElementById("score2");
+            
+            document.getElementById("card2").style.display = "grid";
+
+            var img2 = document.getElementById("user2image");
+            img2.src = Object(data.avatar_url);
+            
         
         
         
@@ -229,20 +251,96 @@ function ScoreCalc(user1, user2){
             //        console.log(c1+c2);
             //        console.log(scoreun);
 
-                    names.innerHTML = user1+" scores "+c1+" points"+ " against "+user2+" who scores "+c2+" points";
+//                    names.innerHTML = user1+" scores "+c1+" points"+ " against "+user2+" who scores "+c2+" points";
+                    name1.innerHTML = user1;
+                    name2.innerHTML = user2;
+                    score1.innerHTML = "Points scored: "+c1;
+                    score2.innerHTML = "Points scored: "+c2;
+                    
+                    git1.href = "https://github.com/"+user1;
+                    git2.href = "https://github.com/"+user2;
 
 
                     if(c1>c2){
+                        
+                        if ( document.getElementById("git1").classList.contains('btn-primary')){
+                            document.getElementById("git1").classList.remove('btn-primary');
+                        }if ( document.getElementById("git1").classList.contains('btn-success')){
+                            document.getElementById("git1").classList.remove('btn-success');
+                        }if ( document.getElementById("git1").classList.contains('btn-danger')){
+                            document.getElementById("git1").classList.remove('btn-danger');
+                        }
+                        
+                        if ( document.getElementById("git2").classList.contains('btn-primary')){
+                            document.getElementById("git2").classList.remove('btn-primary');
+                        }if ( document.getElementById("git2").classList.contains('btn-success')){
+                            document.getElementById("git2").classList.remove('btn-success');
+                        }if ( document.getElementById("git2").classList.contains('btn-danger')){
+                            document.getElementById("git2").classList.remove('btn-danger');
+                        }
+                        
+                        document.getElementById("git2").classList.remove('btn-primary');
+                        
+                        document.getElementById("git1").classList.add('btn-success');
+                        document.getElementById("git2").classList.add('btn-danger');
+                        
                         diff1 = c1-c2;
                         winners.innerHTML = user1+" wins against "+user2+" by "+diff1+" points.";
                     }
 
                     else if(c2>c1){
+                        
+                        
+                        if ( document.getElementById("git1").classList.contains('btn-primary')){
+                            document.getElementById("git1").classList.remove('btn-primary');
+                        }if ( document.getElementById("git1").classList.contains('btn-success')){
+                            document.getElementById("git1").classList.remove('btn-success');
+                        }if ( document.getElementById("git1").classList.contains('btn-danger')){
+                            document.getElementById("git1").classList.remove('btn-danger');
+                        }
+                        
+                        if ( document.getElementById("git2").classList.contains('btn-primary')){
+                            document.getElementById("git2").classList.remove('btn-primary');
+                        }if ( document.getElementById("git2").classList.contains('btn-success')){
+                            document.getElementById("git2").classList.remove('btn-success');
+                        }if ( document.getElementById("git2").classList.contains('btn-danger')){
+                            document.getElementById("git2").classList.remove('btn-danger');
+                        }
+                        
+                        document.getElementById("git1").classList.remove('btn-primary');
+                        document.getElementById("git2").classList.remove('btn-primary');
+                        
+                        document.getElementById("git2").classList.add('btn-success');
+                        document.getElementById("git1").classList.add('btn-danger');
+                        
                         diff1=c2-c1;
                         winners.innerHTML = user2+" wins against "+user1+" by "+diff1+" points.";
                     }
 
                     else if(c2==c1){
+                        
+                        if ( document.getElementById("git1").classList.contains('btn-primary')){
+                            document.getElementById("git1").classList.remove('btn-primary');
+                        }if ( document.getElementById("git1").classList.contains('btn-success')){
+                            document.getElementById("git1").classList.remove('btn-success');
+                        }if ( document.getElementById("git1").classList.contains('btn-danger')){
+                            document.getElementById("git1").classList.remove('btn-danger');
+                        }
+                        
+                        if ( document.getElementById("git2").classList.contains('btn-primary')){
+                            document.getElementById("git2").classList.remove('btn-primary');
+                        }if ( document.getElementById("git2").classList.contains('btn-success')){
+                            document.getElementById("git2").classList.remove('btn-success');
+                        }if ( document.getElementById("git2").classList.contains('btn-danger')){
+                            document.getElementById("git2").classList.remove('btn-danger');
+                        }
+                        
+                        document.getElementById("git1").classList.remove('btn-primary');
+                        document.getElementById("git2").classList.remove('btn-primary');
+                        
+                        document.getElementById("git1").classList.add('btn-success');
+                        document.getElementById("git2").classList.add('btn-success');
+                
                         winners.innerHTML = user1+" equals "+user2;
                     }
                     

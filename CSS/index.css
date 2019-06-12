@@ -15,7 +15,7 @@ p{
    color:white;
 }
 .top{
-    padding: 100px;
+    padding: 50px;
 }
 .body{
    width:100%;
@@ -27,7 +27,7 @@ p{
    max-width:600px;
    margin:auto;
    background: #2b4242;
-   padding:20px;
+   padding:15px;
    box-sizing:border-box;
    box-shadow:0px 3px 6px rgba(0, 0, 0, 0.5);
    font-size:16px;
@@ -37,6 +37,7 @@ p{
 }
 
 .inputs{
+    font-family: 'Raleway','sans-serif';
    position:relative;
    float:left;
    width:100%;
@@ -117,7 +118,7 @@ button:hover{
 	position: relative;
 	box-sizing: border-box;
 	overflow: hidden;
-	margin: 30px 30px 40px 500px;
+	margin: 20px 10px 40px 500px;
     
 }
 
@@ -129,6 +130,7 @@ button:hover{
 	transition: all .5s ease;
 	z-index: 2;
 	position: relative;
+    font-family: 'Raleway','sans-serif';
 }
 
 .eff-8 {
@@ -139,7 +141,9 @@ button:hover{
 	transition: all .5s ease;
 	z-index: 1;
 	box-sizing: border-box;
+    
     display: flex; justify-content: center;
+    
 }
 
 .button-8:hover .eff-8 {
@@ -166,3 +170,72 @@ button:hover{
     font-family: 'Raleway','sans-serif';
     font-size: 18px;
 }
+
+.result{
+    margin-top: 60px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 10%;
+  border-radius: 15px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+img {
+  border-radius: 5px 5px 0 0;
+}
+
+.containerimg {
+  padding: 2px 16px;
+}
+
+#card1{
+    display: none;
+    text-align: center;
+    float: left;
+    margin-left: 450px;
+}
+#card2{
+    display: none;
+    text-align: center;
+    float: right;
+    margin-right: 450px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
