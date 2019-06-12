@@ -229,7 +229,7 @@ function ScoreCalc(user1, user2){
             //        console.log(c1+c2);
             //        console.log(scoreun);
 
-                    names.innerHTML = user1+" scores "+c1+" points"+ " while "+user2+" scores "+c2+" points";
+                    names.innerHTML = user1+" scores "+c1+" points"+ " against "+user2+" who scores "+c2+" points";
 
 
                     if(c1>c2){
@@ -247,9 +247,21 @@ function ScoreCalc(user1, user2){
                     }
                     
                     
+                })
+                .fail(function(){
+                    alert("Wrong Username");
                 });
+            })
+            .fail(function(){
+                    alert("Wrong Username");
             });
+        })
+        .fail(function(){
+                    alert("Wrong Username");
         });
+    })
+    .fail(function(){
+                    alert("Wrong Username");
     });       
     
 }
@@ -364,9 +376,11 @@ function getUser(){
     var user1=document.getElementById("user1").value;
     var user2=document.getElementById("user2").value;
     
-    main(user1,user2);
-    
-    
-    
+    if(user1==user2){
+        alert("Enter two different usernames");
+    }
+    else{
+        main(user1,user2);
+    } 
     
 }

@@ -1,0 +1,168 @@
+html, body{
+   background:#333;
+   margin:0px; 
+   padding:0px;
+   width:100%;
+   height:100%;
+   font-family: 'Raleway', sans-serif;
+   color:white;
+}
+a{
+   color:white;
+}
+p{
+   text-align:center;
+   color:white;
+}
+.top{
+    padding: 100px;
+}
+.body{
+   width:100%;
+   height:200px;
+   display:flex;
+}
+.container{
+    
+   max-width:600px;
+   margin:auto;
+   background: #2b4242;
+   padding:20px;
+   box-sizing:border-box;
+   box-shadow:0px 3px 6px rgba(0, 0, 0, 0.5);
+   font-size:16px;
+   border:1px solid #444;
+   border-radius:3px;
+   animation: 1.25s flyin ease;
+}
+
+.inputs{
+   position:relative;
+   float:left;
+   width:100%;
+   
+   box-sizing:border-box;
+   padding:10px 0px 10px 10px;
+}
+.inputs.half{ width:50%; }
+
+.inputs input{
+   width:100%;
+   padding:20px 0px 4px 0px;
+   background:transparent;
+   
+   box-sizing:border-box;
+   border-color: #AAA;
+   border-width: 0px 0px 2px 0px;
+   color:white;
+   outline:none;
+   transition:all 0.3s;
+   padding:0px 15x;
+}
+
+.inputs input:focus{
+   border-bottom:2px solid #FFF;
+}
+
+
+
+.inputs input + label:after{
+   content: " ";
+}
+
+
+.inputs input:placeholder-shown + label{
+   color:#999;
+   left:14px;
+   bottom:-8px;
+}
+.inputs input:focus + label,
+.inputs input + label{
+   position:absolute;
+   bottom:14px;
+   left:10px;
+   color:#999;
+   line-height:60px;
+   pointer-events:none;
+   transition: all 0.25s;
+   font-size:14px;
+}
+/*
+
+button{
+   border:0px;
+   padding:10px 40px;
+   border-radius:3px;
+   background:#465;
+   color:white;
+   float:right;
+   font-weight:bold;
+   border:1px solid transparent;
+   transition:all 0.25s;
+}
+button:hover{
+   border:1px solid #999;
+}
+*/
+
+.button-8 {
+/*    padding:10px 40px;*/
+	width: 100px;
+	height: 40px;
+	border: 2px solid #377D6A;
+	border-radius: 5px;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	margin: 30px 30px 40px 500px;
+    
+}
+
+.button-8 a {
+	font-size: 16px;
+	color: #fff;
+	text-decoration: none;
+	line-height: 38px;
+	transition: all .5s ease;
+	z-index: 2;
+	position: relative;
+}
+
+.eff-8 {
+	width: 100px;
+	height: 40px;
+	border: 70px solid #377D6A;
+	position: absolute;
+	transition: all .5s ease;
+	z-index: 1;
+	box-sizing: border-box;
+    display: flex; justify-content: center;
+}
+
+.button-8:hover .eff-8 {
+	border: 0px solid #377D6A;
+}
+
+.button-8:hover a {
+	color: #fff;
+}
+
+@keyframes flyin{
+   from{ transform: translateY(100%); opacity:0; }
+}
+
+#winner{
+    text-align: center;
+    font-family: 'Raleway','sans-serif' ;
+    font-size: 25px;
+}
+
+
+#names{
+    text-align: center;
+    font-family: 'Raleway','sans-serif';
+    font-size: 18px;
+}

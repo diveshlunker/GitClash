@@ -6,6 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
 	
+	<link rel="stylesheet" href="CSS/index.css">
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
@@ -23,35 +25,55 @@
 </head>
 
 <body>
+    
+    <a href="https://github.com/diveshlunker/GitClash"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <div class="top">
+    </div>
 
 	<div class="container"> 
-        
-         <form class="form-inline text-center" id="frm1">
-              <div class="form-group">
-                    <label for="Username">Username: </label>
-                    <input type="text" class="form-control" id="user1" placeholder="diveshlunker" name="user1">
 
-              </div>
-              <div class="form-group">
-                    <label for="Username">Username: </label>
-                    <input type="text" class="form-control" id="user2" placeholder="diveshlunker" name="user2">
-
-              </div>
-
-          </form>  
-          <input type="button" value="Submit" class="btn btn-default" onclick="getUser()">	
-          
-          <div id="names">
+         <div class="inputs">Please enter correct USERNAMES</div>
+           <form>
+            <div class="inputs half">
+              <input type="text" placeholder=" " name="user1" id="user1"/>
+              <label>User-Name 1</label>
+            </div>
+            <div class="inputs half">
+              <input type="text" placeholder=" " name="user2" id="user2"/>
+              <label>User-Name 2</label>
+            </div>
+            </form>
+            
+            <div class="button-8" onclick="getUser()">
+               <div class="eff-8"></div>
+               <a href="#">Submit</a>
+            </div>
+            
+<!--
+            <div class="inputs" onclick="getUser()">
+              <button>Submit</button>
+            </div>
+-->
+           
+           
+           <div id="names">
               
-          </div>
+          </div><br>
           
           <div id="winner">
               
           </div>
+            
+          
+          
        
       
 	    	
 	</div>
+	<div class="result">
+	    
+	</div>
+	
 
 
 </body>
