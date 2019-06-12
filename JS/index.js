@@ -11,7 +11,7 @@ function scoreUnScratched(norepou1,norepou2,blog1,blog2,difffof1,difffof2,compan
     }
     else if(norepou1>norepou2){
             c1+=1;
-//        console.log(c1);
+        console.log("norepo");
     }
     else if(norepou2>norepou1){
             c2+=1;
@@ -26,7 +26,7 @@ function scoreUnScratched(norepou1,norepou2,blog1,blog2,difffof1,difffof2,compan
     }
     if(difffof1>difffof2){
         c1+=1;
-//        console.log(c1);
+        console.log("diffof");
     }
     else if(difffof1<difffof2){
         c2+=1;
@@ -34,15 +34,15 @@ function scoreUnScratched(norepou1,norepou2,blog1,blog2,difffof1,difffof2,compan
     else if(difffof1==difffof2){
         c1+=0.5;
         c2+=0.5;
-//        console.log(c1);
     }
-    if(company1.length>0){
-        c1+=1;
-//        console.log(company2);
+    if(company1.length>1){
+        c1+=1
     }
-    if(company2.length>0){
-        c2+=1;
+    if(company2.length>1){
+        c2+=1
     }
+    
+    
     l.push(c1);
     l.push(c2);
     
@@ -55,6 +55,8 @@ function repoScratchScoreCalc(stars1,stars2,watches1,watches2,forks1,forks2,repo
     var l = ["valuesss"];
     var c1=0;
     var c2=0;
+    console.log(stars1);
+    console.log(stars2);
     if(stars1>stars2){
         c1+=1;
     }
@@ -128,64 +130,6 @@ function repoScratchScoreCalc(stars1,stars2,watches1,watches2,forks1,forks2,repo
     
 }
 
-function repoScratch(user1,user2,c1,c2){
-    var stars1;
-    var stars2;
-    var watches1;
-    var watches2;
-    var forks1;
-    var forks2;
-    var repoforks1;
-    var repoforks2;
-    var license1;
-    var license2;
-    var languages1;
-    var languages2;
-    var score;
-    
-    
-    $.getJSON("https://api.github.com/users/"+user1+"/repos")
-    .done(function(data){
-        
-        stars1 = stargazzers(data);
-        watches1 = watches(data);
-        forks1 = forks(data);
-        repoforks1 = repoWithoutForks(data);
-        languages1 = languages(data);
-        license1 = licence(data);
-        
-    });
-    $.getJSON("https://api.github.com/users/"+user2+"/repos")
-    .done(function(data){
-        
-//        console.log(data);
-        stars2 = stargazzers(data);
-        watches2 = watches(data);
-        forks2 = forks(data);
-        repoforks2 = repoWithoutForks(data);
-        languages2 = languages(data);
-        license2 = licence(data);
-//        console.log(watches1);
-        
-        
-        
-//        console.log(l);
-        
-        
-        
-    });
-    score = repoScratchScoreCalc(stars1,stars2,watches1,watches2,forks1,forks2,repoforks1,repoforks2,languages1,languages2,license1,license2);
-//        console.log(score);
-    return score;   
-    
-//    return l;
-    
-//    console.log(score);
-//    return score;
-    
-    
-}
-
 
 function ScoreCalc(user1, user2){
     var c1=0;
@@ -207,80 +151,106 @@ function ScoreCalc(user1, user2){
     var difffof2;
     var scoreun;
     var diff1;
-//    var scoreScratched = Array[100];
+    var stars1;
+    var stars2;
+    var watches1;
+    var watches2;
+    var forks1;
+    var forks2;
+    var repoforks1;
+    var repoforks2;
+    var license1;
+    var license2;
+    var languages1;
+    var languages2;
+    var score;
     
     
     
     $.getJSON("https://api.github.com/users/"+user1)
     .done(function(data){
+        
+        var names = document.getElementById("names");
+        var winners = document.getElementById("winner");
+        
         norepou1 = Object(data.public_repos);
         blog1 = Object(data.blog);
         followers1 = Object(data.followers);
         following1 = Object(data.following);
         difffof1 = followers1-following1;
         company1 = Object(data.company);
-//        console.log(company1);
         
-//        console.log(norepou1);
-        
-    });
-    $.getJSON("https://api.github.com/users/"+user2)
-    .done(function(data){
-        
-        var names = document.getElementById("names");
-        var winners = document.getElementById("winner");
-        
-        
-        norepou2 = Object(data.public_repos);
-        blog2 = Object(data.blog);
-        followers2 = Object(data.followers);
-        following2 = Object(data.following);
-        difffof2 = followers2-following2;
-        company2 = Object(data.company);
+        $.getJSON("https://api.github.com/users/"+user2)
+        .done(function(data){
         
         
         
-        scoreun = scoreUnScratched(norepou1,norepou2,blog1,blog2,difffof1,difffof2,company1,company2);
-//        console.log(norepou2);
-//        console.log(scoreun);
-        scoreScratched = repoScratch(user1,user2,c1,c2);
-    console.log(scoreScratched);
-    
-    
-    c1 = scoreScratched[1]+scoreun[1];
-    c2 = scoreScratched[2]+scoreun[2];
-    console.log(c1+c2);
-    console.log(scoreun);
-    
-        names.innerHTML = user1+" scores "+c1+" points"+ " while "+user2+" scores "+c2+" points";
+            norepou2 = Object(data.public_repos);
+            blog2 = Object(data.blog);
+            followers2 = Object(data.followers);
+            following2 = Object(data.following);
+            difffof2 = followers2-following2;
+            company2 = Object(data.company);
+            
+            
+            $.getJSON("https://api.github.com/users/"+user1+"/repos")
+            .done(function(data){
         
+                stars1 = stargazzers(data);
+                watches1 = watches(data);
+                forks1 = forks(data);
+                repoforks1 = repoWithoutForks(data);
+                languages1 = languages(data);
+                license1 = licence(data);
+                
+                $.getJSON("https://api.github.com/users/"+user2+"/repos")
+                .done(function(data){
+            
         
-        if(c1>c2){
-            diff1 = c1-c2;
-            winners.innerHTML = user1+" wins against "+user2+" by "+diff1+" points.";
-        }
-        
-        else if(c2>c1){
-            diff1=c2-c1;
-            winners.innerHTML = user2+" wins against "+user1+" by "+diff1+" points.";
-        }
-        
-        else if(c2==c1){
-            winners.innerHTML = user1+" equals "+user2;
-        }
-        
-        
-        
-        
-        
-        
-    });
-//    names.innerHTML=c1;
-    
-    
-    
-    
-    
+
+                    stars2 = stargazzers(data);
+                    watches2 = watches(data);
+                    forks2 = forks(data);
+                    repoforks2 = repoWithoutForks(data);
+                    languages2 = languages(data);
+                    license2 = licence(data);
+                    
+                    
+                    scoreun = scoreUnScratched(norepou1,norepou2,blog1,blog2,difffof1,difffof2,company1,company2);
+                    score = repoScratchScoreCalc(stars1,stars2,watches1,watches2,forks1,forks2,repoforks1,repoforks2,languages1,languages2,license1,license2);
+
+                    console.log(scoreun);
+
+                    console.log(score);
+
+
+                    c1 = score[1]+scoreun[1];
+                    c2 = score[2]+scoreun[2];
+            //        console.log(c1+c2);
+            //        console.log(scoreun);
+
+                    names.innerHTML = user1+" scores "+c1+" points"+ " while "+user2+" scores "+c2+" points";
+
+
+                    if(c1>c2){
+                        diff1 = c1-c2;
+                        winners.innerHTML = user1+" wins against "+user2+" by "+diff1+" points.";
+                    }
+
+                    else if(c2>c1){
+                        diff1=c2-c1;
+                        winners.innerHTML = user2+" wins against "+user1+" by "+diff1+" points.";
+                    }
+
+                    else if(c2==c1){
+                        winners.innerHTML = user1+" equals "+user2;
+                    }
+                    
+                    
+                });
+            });
+        });
+    });       
     
 }
 
@@ -295,6 +265,7 @@ function stargazzers(data){
         }
         
     }
+
     return stars
 }
 function languages(data){
@@ -380,7 +351,7 @@ function watches(data){
         }
         
     }
-//    console.log(watch);
+
     return watch
     
 }
