@@ -17,9 +17,9 @@ function scoreUnScratched(norepou1,norepou2,blog1,blog2,difffof1,difffof2,compan
             c2+=1;
     }
 //    console.log(blog1);
-    if(blog1!="" and blog2!=""){
+    if(blog1!="" && blog2!=""){
         c1+=0.5;
-        c2+=0.5
+        c2+=0.5;
 //        console.log(c1);
     }
     else if(blog2!=""){
